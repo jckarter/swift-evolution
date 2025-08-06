@@ -14,7 +14,7 @@ This is deeply related to `~Escapable` types, as introduced in [SE-0446](0446-no
 
 **Edited** (March 20, 2025):
 
-- Replaced `dependsOn` return type modifier with a declaration-level `@_lifetime` attribute.
+- Replaced `dependsOn` return type modifier with a declaration-level `@lifetime` attribute.
     Removed dependency inference rules.
 - Integrated links to proposals SE-0446 (`Escapable`), SE-0447 (`Span`), SE-0456 (`Span`-producing properties), and SE-0467 (`MutableSpan`) that have undergone review.
 - Added SE-0458 `@unsafe` annotations to the `_overrideLifetime` standard library functions, and added `@unsafe` as a requirement for APIs using `Escapable & BitwiseCopyable` lifetime dependencies under strict memory safety.
@@ -49,7 +49,7 @@ This is deeply related to `~Escapable` types, as introduced in [SE-0446](0446-no
 
 **Edited** (July 31, 2024)
 
-- New alternative considered: @_lifetime annotation
+- New alternative considered: @lifetime annotation
 - New alternative considered: where clause
 - Simplified implicit lifetime dependencies and added same-type rule
 
@@ -58,6 +58,9 @@ This is deeply related to `~Escapable` types, as introduced in [SE-0446](0446-no
 
 **Edited** (Aug 19, 2024)
 - Update Future Direction: Lifetime dependence for closures
+
+**Edited** (June 12, 2025)
+- Rename `@lifetime` to `@_lifetime` available under Lifetimes feature flag
 
 #### See Also
 
