@@ -132,7 +132,7 @@ struct Person: ~Copyable, ~Escapable {
   var age: Inout<Int>
 }
 ```
- 
+
 ## Detailed design
 
 ### Lifetime dependence
@@ -307,7 +307,7 @@ a `Span` with a pointer to the array's elements, which is expected to have a
 lifetime constrained by borrowing the `InlineArray`:
 
 ```swift
-@_lifetime(borrow target)
+@_lifetime(borrow array)
 func span(over array: [2 of Int8]) -> Span<Int8> {
   // This ought to be allowed
   return array.span
@@ -318,7 +318,7 @@ Swift classifies `InlineArray`, as well as any type containing an `InlineArray`
 within its inline storage, as **addressable-for-dependencies**. Values of
 such types are always passed indirectly as a parameter to a function call
 whose return value has a lifetime dependency on that parameter. In the example
-above, this ensures that in the call to `span(over:)`, the `array` parameter 
+above, this ensures that in the call to `span(over:)`, the `array` parameter
 exists in memory that outlives the call, allowing the `Span` to be safely
 formed and returned to the caller.
 
@@ -330,7 +330,7 @@ from the target through the `Borrow`, so when the `Value` type is
 @_lifetime(copy borrow)
 func span(over borrow: Borrow<[2 of Int8]>) -> Span<Int8> {
   // This also ought to be allowed
-  return borrow.target.span
+  return borrow.value.span
 }
 ```
 
